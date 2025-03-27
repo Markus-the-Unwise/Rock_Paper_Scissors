@@ -13,8 +13,36 @@ let getComputerChoice = function () {
 }
 
 let getPlayerChoice = function () {
-    choice = prompt("Rock = 1, Paper = 2, Scissors = 3")
+    choice = prompt("Enter you choice (Rock, Paper or Scissors")
     return choice
 }
-console.log(getComputerChoice())
-console.log(getPlayerChoice())
+
+let playRound = function (player, computer) {
+    // player.toLowerCase()
+    // Tie
+    if (player == computer) {
+        result = "tie"
+        return result
+    }
+
+    // remaining cases
+    if (player == "rock" && computer == "scissors" || player == "scissors" && computer == "paper" || player == "paper" && computer == "rock") {
+        result = "win"
+
+    } else {
+        result = "loss"
+    }
+    return result
+}
+
+let player = getPlayerChoice().toLowerCase()
+let computer = getComputerChoice()
+
+console.log(computer)
+console.log(player)
+console.log(playRound(player, computer))
+
+// Player and Computer score
+let scoreP = 0
+let scoreC = 0
+
