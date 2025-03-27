@@ -1,4 +1,4 @@
-let getComputerChoice = function () {
+function getComputerChoice() {
     let choice = Math.random() * 3
     if (choice < 1) {
         choice = "rock"
@@ -12,12 +12,12 @@ let getComputerChoice = function () {
     return choice
 }
 
-let getPlayerChoice = function () {
+function getPlayerChoice() {
     choice = prompt("Enter you choice (Rock, Paper or Scissors")
     return choice
 }
 
-let playRound = function (player, computer) {
+function playRound(player, computer) {
     // player.toLowerCase()
     // Tie
     if (player == computer) {
@@ -37,16 +37,37 @@ let playRound = function (player, computer) {
     return result
 }
 
+function playGame() {
+    for (let rounds = 0; rounds < 5; rounds++) {
+        let player = getPlayerChoice().toLowerCase()
+        let computer = getComputerChoice()
+        console.log(playRound(player, computer))
+    }
+    // compare score
+    if (scoreP == scoreC) {
+        result = `Player: ${scoreP} Computer: ${scoreC}, it's a tie!`
+    }
+    else if (scoreP > scoreC) {
+        result = `Player: ${scoreP} Computer: ${scoreC}, you win!`
+    }
+    else {
+        result = `Player: ${scoreP} Computer: ${scoreC}, you lose...`
+    }
+    console.log(result)
+}
+
 // Player and Computer score
 let scoreP = 0
 let scoreC = 0
 
-let player = getPlayerChoice().toLowerCase()
-let computer = getComputerChoice()
+// let player = getPlayerChoice().toLowerCase()
+// let computer = getComputerChoice()
 
-console.log(computer)
-console.log(player)
-console.log(playRound(player, computer))
+// console.log(computer)
+// console.log(player)
+// console.log(playRound(player, computer))
+
+playGame()
 
 
 
