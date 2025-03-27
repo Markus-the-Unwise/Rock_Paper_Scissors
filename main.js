@@ -21,19 +21,25 @@ let playRound = function (player, computer) {
     // player.toLowerCase()
     // Tie
     if (player == computer) {
-        result = "tie"
+        result = `It's a tie! Player: ${scoreP} Computer: ${scoreC}`
         return result
     }
 
     // remaining cases
     if (player == "rock" && computer == "scissors" || player == "scissors" && computer == "paper" || player == "paper" && computer == "rock") {
-        result = "win"
-
-    } else {
-        result = "loss"
+        scoreP++
+        result = `You win! ${player} beats ${computer}! Player: ${scoreP} Computer: ${scoreC}`
+    }
+    else {
+        scoreC++
+        result = `You lost... ${computer} beats ${player}. Player: ${scoreP} Computer: ${scoreC}`
     }
     return result
 }
+
+// Player and Computer score
+let scoreP = 0
+let scoreC = 0
 
 let player = getPlayerChoice().toLowerCase()
 let computer = getComputerChoice()
@@ -42,7 +48,5 @@ console.log(computer)
 console.log(player)
 console.log(playRound(player, computer))
 
-// Player and Computer score
-let scoreP = 0
-let scoreC = 0
+
 
