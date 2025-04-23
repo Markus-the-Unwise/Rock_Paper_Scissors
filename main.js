@@ -18,7 +18,10 @@ function getPlayerChoice() {
 }
 
 function playRound(player, computer) {
-    // player.toLowerCase()
+    if (player === "") {
+        return
+    }
+
     // Tie
     if (player == computer) {
         result = `It's a tie! Player: ${scoreP} Computer: ${scoreC}`
@@ -34,15 +37,13 @@ function playRound(player, computer) {
         scoreC++
         result = `You lost... ${computer} beats ${player}. Player: ${scoreP} Computer: ${scoreC}`
     }
-    return result
+    console.log(result)
+    updateResult(result)
+    // return result
 }
 
 function playGame() {
-    for (let rounds = 0; rounds < 5; rounds++) {
-        let player = getPlayerChoice().toLowerCase()
-        let computer = getComputerChoice()
-        console.log(playRound(player, computer))
-    }
+
     // compare score
     if (scoreP == scoreC) {
         result = `Player: ${scoreP} Computer: ${scoreC}, it's a tie!`
@@ -56,18 +57,22 @@ function playGame() {
     console.log(result)
 }
 
+function updateResult(roundResult) {
+    results.textContent = roundResult
+    if (scoreC == 5 && gameover == false) { results.textContent += "Computer wins the game"; gameover = true }
+    if (scoreP == 5 && gameover == false) { results.textContent += "Player wins the game"; gameover = true }
+}
+
 // Player and Computer score
 let scoreP = 0
 let scoreC = 0
-
-// let player = getPlayerChoice().toLowerCase()
-// let computer = getComputerChoice()
-
-// console.log(computer)
-// console.log(player)
-// console.log(playRound(player, computer))
-
-playGame()
+let gameover = false
 
 
 
+// playGame()
+
+const inputSection = document.querySelector('.buttons');
+const results = document.querySelector('.result')
+// inputSection.addEventListener('click', (e) => console.log(e.target.id))
+inputSection.addEventListener('click', function (e) { playRound(e.target.id, getComputerChoice()) })
